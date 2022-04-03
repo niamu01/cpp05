@@ -1,39 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/03 16:59:36 by yeju              #+#    #+#             */
+/*   Updated: 2022/04/03 17:13:26 by yeju             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FORM_HPP
 #define FORM_HPP
+
 //#include <string>
 #include "Bureaucrat.hpp"
 
 class Form {
-
 private:
-
 	const std::string _name;
 	bool _signed;
 	const int _gradeToSign;
 	const int _gradeToExecute;
-	Form();
-
+	
 public:
+	Form();
 	Form(std::string name, int gradeToSign, int gradeToExecute);
+	Form(Form const &rhs);
 	~Form();
-	Form(Form const & src);
-	Form & operator=(Form const & rhs);
+	
+	Form &operator=(Form const &rhs);
 
 	std::string getName() const;
 	bool getSignedResult() const;
-	void setSignedResult(bool signedResult);
 	int getGradeToSign() const;
 	int getGradeToExecute() const;
+	
+	void setSignedResult(bool signedResult);
 
-	void beSigned(Bureaucrat & bureaucrat);
+	void beSigned(Bureaucrat &bureaucrat);
 
 	class GradeTooHighException : public std::exception
 	{
-		public:
-			virtual const char* what() const throw()
-			{
-				return ("<Form> Grade too high (smaller than 1).");
-			}
+	public:
+		virtual const char* what() const throw()
+		{
+			return ("Form: Grade is too high");
+		}
 	};
 
 	class GradeTooLowException : public std::exception
@@ -41,12 +54,11 @@ public:
 	public:
 		virtual const char* what() const throw()
 		{
-			return ("<Form> Grade too low (bigger than 150).");
+			return ("Form: Grade is too low");
 		}
 	};
-
 };
 
-std::ostream & operator<<(std::ostream & o, Form const & form);
+std::ostream &operator<<(std::ostream &out, Form const &form);
 
-#endif //FORM_HPP
+#endif

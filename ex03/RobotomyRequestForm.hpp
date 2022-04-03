@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   RobotomyRequestForm.hpp                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qli <qli@student.codam.nl>                   +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/01/15 18:44:24 by qli           #+#    #+#                 */
-/*   Updated: 2021/01/15 18:44:24 by qli           ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/15 18:44:24 by qli               #+#    #+#             */
+/*   Updated: 2022/04/03 17:13:45 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ private:
 public:
 	RobotomyRequestForm(std::string target);
 	virtual ~RobotomyRequestForm();
-	RobotomyRequestForm(RobotomyRequestForm const & src);
-	RobotomyRequestForm & operator=(RobotomyRequestForm const & rhs);
+	RobotomyRequestForm(RobotomyRequestForm const &rhs);
+	RobotomyRequestForm &operator=(RobotomyRequestForm const &rhs);
 
 	virtual void executeForm() const;
 

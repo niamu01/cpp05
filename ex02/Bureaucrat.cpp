@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   Bureaucrat.cpp                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qli <qli@student.codam.nl>                   +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/01/14 15:07:44 by qli           #+#    #+#                 */
-/*   Updated: 2021/01/14 15:07:44 by qli           ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/14 15:07:44 by qli               #+#    #+#             */
+/*   Updated: 2022/04/03 17:14:02 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 		else if (grade > 150)
 			throw GradeTooLowException();
 	}
-	catch (const GradeTooLowException & e)
+	catch (const GradeTooLowException &e)
 	{
 		std::cout << RED << e.what() << RESET << std::endl;
 	}
-	catch (const GradeTooHighException & e)
+	catch (const GradeTooHighException &e)
 	{
 		std::cout << RED << e.what() << RESET << std::endl;
 	}
@@ -42,9 +42,9 @@ Bureaucrat::~Bureaucrat() {
 
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &src) : _name(src.getName()), _grade(src.getGrade()){
+Bureaucrat::Bureaucrat(const Bureaucrat &rhs) : _name(rhs.getName()), _grade(rhs.getGrade()){
 	std::cout << YELLOW << "Bureaucrat copy constructor called." << RESET << std::endl;
-	*this = src;
+	*this = rhs;
 }
 
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs) {
@@ -75,7 +75,7 @@ void Bureaucrat::incrementGrade(int amount) {
 			throw Bureaucrat::GradeTooHighException();
 		}
 	}
-	catch (Bureaucrat::GradeTooHighException & e) {
+	catch (Bureaucrat::GradeTooHighException &e) {
 		std::cout << RED << e.what() << std::endl << RESET;
 		return;
 	}
@@ -88,7 +88,7 @@ void Bureaucrat::decrementGrade(int amount) {
 		if (this->getGrade() + amount > 150)
 			throw Bureaucrat::GradeTooLowException();
 	}
-	catch (Bureaucrat::GradeTooLowException & e) {
+	catch (Bureaucrat::GradeTooLowException &e) {
 		std::cout << RED << e.what() << std::endl << RESET;
 		return;
 	}

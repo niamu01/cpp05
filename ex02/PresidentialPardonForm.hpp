@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   PresidentialPardonForm.hpp                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qli <qli@student.codam.nl>                   +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/01/15 18:44:12 by qli           #+#    #+#                 */
-/*   Updated: 2021/01/15 18:44:12 by qli           ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/15 18:44:12 by qli               #+#    #+#             */
+/*   Updated: 2022/04/03 17:13:45 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ private:
 public:
 	PresidentialPardonForm(std::string target);
 	virtual ~PresidentialPardonForm();
-	PresidentialPardonForm(PresidentialPardonForm const & src);
-	PresidentialPardonForm & operator=(PresidentialPardonForm const & rhs);
+	PresidentialPardonForm(PresidentialPardonForm const &rhs);
+	PresidentialPardonForm &operator=(PresidentialPardonForm const &rhs);
 
-//	virtual void execute(Bureaucrat const & executor) const;
+//	virtual void execute(Bureaucrat const &executor) const;
 	virtual void executeForm() const;
 
 };

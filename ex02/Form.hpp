@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   Form.hpp                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qli <qli@student.codam.nl>                   +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/01/15 18:43:54 by qli           #+#    #+#                 */
-/*   Updated: 2021/01/15 18:43:54 by qli           ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/15 18:43:54 by qli               #+#    #+#             */
+/*   Updated: 2022/04/03 17:13:45 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ private:
 public:
 	Form(std::string name, int gradeToSign, int gradeToExecute);
 	virtual ~Form();
-	Form(Form const & src);
-	Form & operator=(Form const & rhs);
+	Form(Form const &rhs);
+	Form &operator=(Form const &rhs);
 
 	std::string getName() const;
 	bool getSignedResult() const;
 	int getGradeToSign() const;
 	int getGradeToExecute() const;
-	void beSigned(Bureaucrat & bureaucrat);
+	void beSigned(Bureaucrat &bureaucrat);
 
-	void execute(Bureaucrat const & executor) const;
+	void execute(Bureaucrat const &executor) const;
 	virtual void executeForm() const = 0;
 	bool checkFormSignedStatus() const;
-	bool checkFormExecuteGrade(Bureaucrat const & executor) const;
+	bool checkFormExecuteGrade(Bureaucrat const &executor) const;
 
 	void setFormTarget(std::string target);
 	std::string getFormTarget() const;
@@ -76,6 +76,6 @@ public:
 
 };
 
-std::ostream & operator<<(std::ostream & o, Form const & form);
+std::ostream &operator<<(std::ostream &o, Form const &form);
 
 #endif //FORM_HPP

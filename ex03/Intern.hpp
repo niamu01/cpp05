@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   Intern.hpp                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qli <qli@student.codam.nl>                   +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/01/15 18:45:07 by qli           #+#    #+#                 */
-/*   Updated: 2021/01/15 18:45:07 by qli           ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/15 18:45:07 by qli               #+#    #+#             */
+/*   Updated: 2022/04/03 17:13:45 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ public:
 
 	Intern();
 	~Intern();
-	Intern(Intern const & src);
-	Intern & operator=(Intern const & rhs);
+	Intern(Intern const &rhs);
+	Intern &operator=(Intern const &rhs);
 
 	Form* makeForm(std::string formName, std::string formTarget);
 	Form* createPresidentialPardon(std::string formTarget);

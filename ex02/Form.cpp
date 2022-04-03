@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   Form.cpp                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qli <qli@student.codam.nl>                   +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/01/15 18:43:49 by qli           #+#    #+#                 */
-/*   Updated: 2021/01/15 18:43:49 by qli           ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   Form.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/15 18:43:49 by qli               #+#    #+#             */
+/*   Updated: 2022/04/03 17:14:02 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ _name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToE
 		else if (this->getGradeToSign() > 150 || this->getGradeToExecute() > 150)
 			throw GradeTooLowException();
 	}
-	catch (const GradeTooHighException & e)
+	catch (const GradeTooHighException &e)
 	{
 		std::cout << RED << e.what() << RESET << std::endl;
 	}
-	catch (const GradeTooLowException & e)
+	catch (const GradeTooLowException &e)
 	{
 		std::cout << RED << e.what() << RESET << std::endl;
 	}
@@ -43,9 +43,9 @@ Form::~Form() {
 	std::cout << MAGENTA << "* Form <" << this->getName() << "> is destroyed. *" << RESET << std::endl;
 }
 
-Form::Form(const Form &src) : _name(src.getName()), _signed(src.getSignedResult()), _gradeToSign(src.getGradeToSign()), _gradeToExecute(src.getGradeToExecute()) {
+Form::Form(const Form &rhs) : _name(rhs.getName()), _signed(rhs.getSignedResult()), _gradeToSign(rhs.getGradeToSign()), _gradeToExecute(rhs.getGradeToExecute()) {
 	std::cout << YELLOW << "Form copy constructor is called." << std::endl;
-	*this = src;
+	*this = rhs;
 }
 
 Form &Form::operator=(const Form &rhs) {
@@ -79,7 +79,7 @@ void Form::beSigned(Bureaucrat &bureaucrat) {
 		if (this->getGradeToSign() < bureaucrat.getGrade())
 			throw GradeTooLowException();
 	}
-	catch (const GradeTooLowException & e)
+	catch (const GradeTooLowException &e)
 	{
 		std::cout << RED << e.what() << RESET << std::endl;
 		return;
@@ -104,7 +104,7 @@ bool Form::checkFormExecuteGrade(const Bureaucrat &executor) const {
 		if (this->getGradeToExecute() < executor.getGrade())
 			throw GradeTooLowException();
 	}
-	catch (const GradeTooLowException & e)
+	catch (const GradeTooLowException &e)
 	{
 		std::cout << RED << e.what() << RESET << std::endl;
 		return false;

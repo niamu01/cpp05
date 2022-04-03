@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 12:05:59 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 16:53:30 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 17:13:30 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ private:
 public:
 	Bureaucrat();
 	Bureaucrat(std::string name, int grade);
-	Bureaucrat(Bureaucrat const &src);
+	Bureaucrat(Bureaucrat const &rhs);
 	~Bureaucrat();
 
 	Bureaucrat &operator=(Bureaucrat const &rhs);
@@ -50,7 +50,7 @@ public:
 	public:
 		virtual const char* what() const throw()
 		{
-			return ("Grade is too high."); //smaller than 1
+			return ("Grade is too high");
 		}
 	};
 
@@ -59,7 +59,7 @@ public:
 	public:
 		virtual const char* what() const throw()
 		{
-			return ("Grade is too low.");
+			return ("Grade is too low");
 		}
 	};
 };

@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/03 16:59:38 by yeju              #+#    #+#             */
+/*   Updated: 2022/04/03 17:00:10 by yeju             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
 int main(void)
 {
-
 	// create bureaucrats and forms
 	Bureaucrat jim("jim", 50);
 	Bureaucrat tom("tom", 100);

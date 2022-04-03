@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   RobotomyRequestForm.cpp                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qli <qli@student.codam.nl>                   +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/01/15 18:44:18 by qli           #+#    #+#                 */
-/*   Updated: 2021/01/15 18:44:18 by qli           ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/15 18:44:18 by qli               #+#    #+#             */
+/*   Updated: 2022/04/03 17:14:02 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 	return;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &src) : Form(src.getName(), src.getGradeToSign(), src.getGradeToExecute()){
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rhs) : Form(rhs.getName(), rhs.getGradeToSign(), rhs.getGradeToExecute()){
 	std::cout << YELLOW << "<RobotomyRequestForm> copy constructor is called." << RESET << std::endl;
-	*this = src;
+	*this = rhs;
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &rhs) {

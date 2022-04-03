@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   PresidentialPardonForm.cpp                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qli <qli@student.codam.nl>                   +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/01/15 18:44:06 by qli           #+#    #+#                 */
-/*   Updated: 2021/01/15 18:44:06 by qli           ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/15 18:44:06 by qli               #+#    #+#             */
+/*   Updated: 2022/04/03 17:14:02 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ PresidentialPardonForm::~PresidentialPardonForm() {
 	return;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &src) : Form(src.getName(), src.getGradeToSign(), src.getGradeToExecute()){
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &rhs) : Form(rhs.getName(), rhs.getGradeToSign(), rhs.getGradeToExecute()){
 	std::cout << YELLOW << "<PresidentialPardonForm> copy constructor is called." << RESET << std::endl;
-	*this = src;
+	*this = rhs;
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &rhs) {

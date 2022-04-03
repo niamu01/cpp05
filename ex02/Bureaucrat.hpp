@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   Bureaucrat.hpp                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qli <qli@student.codam.nl>                   +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/01/14 15:07:57 by qli           #+#    #+#                 */
-/*   Updated: 2021/01/14 15:07:57 by qli           ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/14 15:07:57 by qli               #+#    #+#             */
+/*   Updated: 2022/04/03 17:13:45 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ private:
 public:
 	Bureaucrat(std::string name, int grade);
 	~Bureaucrat();
-	Bureaucrat(Bureaucrat const & src);
-	Bureaucrat & operator=(Bureaucrat const & rhs);
+	Bureaucrat(Bureaucrat const &rhs);
+	Bureaucrat &operator=(Bureaucrat const &rhs);
 
 	std::string getName() const;
 	int	getGrade() const;
@@ -43,8 +43,8 @@ public:
 	void incrementGrade(int);
 	void decrementGrade(int);
 
-	void signForm(Form & form);
-	void executeForm(Form const & form);
+	void signForm(Form &form);
+	void executeForm(Form const &form);
 
 	class GradeTooHighException : public std::exception
 	{
@@ -66,6 +66,6 @@ public:
 
 };
 
-std::ostream & operator<<(std::ostream & o, Bureaucrat const & i);
+std::ostream &operator<<(std::ostream &o, Bureaucrat const &i);
 
 #endif //BUREAUCRAT_HPP

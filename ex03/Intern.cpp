@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   Intern.cpp                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: qli <qli@student.codam.nl>                   +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2021/01/15 18:45:02 by qli           #+#    #+#                 */
-/*   Updated: 2021/01/15 18:45:02 by qli           ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   Intern.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/15 18:45:02 by qli               #+#    #+#             */
+/*   Updated: 2022/04/03 17:14:02 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ Intern::~Intern() {
 	return;
 }
 
-Intern::Intern(const Intern &src) {
+Intern::Intern(const Intern &rhs) {
 	std::cout << "Intern copy constructor called." << std::endl;
-	*this = src;
+	*this = rhs;
 }
 
 Intern &Intern::operator=(const Intern &rhs) {
