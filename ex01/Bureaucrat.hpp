@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 12:05:59 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 17:13:45 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 17:22:20 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 
 #include <iostream>
 
-# define RESET "\e[0m"
-# define RED "\e[31m"
-# define GREEN "\e[32m"
-# define YELLOW "\e[33m"
-# define BLUE "\e[34m"
-# define PURPLE "\e[35m" //MAGENTA
-# define CYAN "\e[36m"
+#define RESET "\e[0m"
+#define RED "\e[31m"
+#define GREEN "\e[32m"
+#define YELLOW "\e[33m"
+#define BLUE "\e[34m"
+#define PURPLE "\e[35m" // MAGENTA
+#define CYAN "\e[36m"
 
 class Form;
 
-class Bureaucrat {
+class Bureaucrat
+{
 
 private:
 	const std::string _name;
-	int	_grade;
+	int _grade;
 	Bureaucrat();
 
 public:
@@ -39,7 +40,7 @@ public:
 	Bureaucrat &operator=(Bureaucrat const &rhs);
 
 	std::string getName() const;
-	int	getGrade() const;
+	int getGrade() const;
 	void setGrade(int);
 	void incrementGrade(int);
 	void decrementGrade(int);
@@ -49,7 +50,7 @@ public:
 	class GradeTooHighException : public std::exception
 	{
 	public:
-		const char * what () const throw ()
+		const char *what() const throw()
 		{
 			return ("Grade is too high (smaller than 1).");
 		}
@@ -58,12 +59,11 @@ public:
 	class GradeTooLowException : public std::exception
 	{
 	public:
-		const char * what () const throw ()
+		const char *what() const throw()
 		{
 			return ("Grade is too low (bigger than 150).");
 		}
 	};
-
 };
 
 std::ostream &operator<<(std::ostream &o, Bureaucrat const &i);

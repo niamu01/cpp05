@@ -1,24 +1,14 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/15 18:43:49 by qli               #+#    #+#             */
-/*   Updated: 2022/04/03 17:14:02 by yeju             ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include <iostream>
 #include "Form.hpp"
 
-Form::Form() : _name("null"), _signed(false), _gradeToSign(0), _gradeToExecute(0) {
+Form::Form() : _name("null"), _signed(false), _gradeToSign(0), _gradeToExecute(0)
+{
 	return;
 }
 
-Form::Form(std::string name, int gradeToSign, int gradeToExecute) :
-_name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute){
+Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
+{
 
 	try
 	{
@@ -39,16 +29,19 @@ _name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToE
 	std::cout << GREEN << "* Form <" << this->getName() << "> is created with <" << this->getGradeToSign() << "> grade to sign and <" << this->getGradeToExecute() << "> to execute. *" << RESET << std::endl;
 }
 
-Form::~Form() {
+Form::~Form()
+{
 	std::cout << MAGENTA << "* Form <" << this->getName() << "> is destroyed. *" << RESET << std::endl;
 }
 
-Form::Form(const Form &rhs) : _name(rhs.getName()), _signed(rhs.getSignedResult()), _gradeToSign(rhs.getGradeToSign()), _gradeToExecute(rhs.getGradeToExecute()) {
+Form::Form(const Form &rhs) : _name(rhs.getName()), _signed(rhs.getSignedResult()), _gradeToSign(rhs.getGradeToSign()), _gradeToExecute(rhs.getGradeToExecute())
+{
 	std::cout << YELLOW << "Form copy constructor is called." << std::endl;
 	*this = rhs;
 }
 
-Form &Form::operator=(const Form &rhs) {
+Form &Form::operator=(const Form &rhs)
+{
 	std::cout << YELLOW << "Form assignation operator is called." << std::endl;
 	if (this != &rhs)
 	{
@@ -57,23 +50,28 @@ Form &Form::operator=(const Form &rhs) {
 	return *this;
 }
 
-std::string Form::getName() const {
+std::string Form::getName() const
+{
 	return this->_name;
 }
 
-bool Form::getSignedResult() const {
+bool Form::getSignedResult() const
+{
 	return this->_signed;
 }
 
-int Form::getGradeToSign() const {
+int Form::getGradeToSign() const
+{
 	return this->_gradeToSign;
 }
 
-int Form::getGradeToExecute() const {
+int Form::getGradeToExecute() const
+{
 	return this->_gradeToExecute;
 }
 
-void Form::beSigned(Bureaucrat &bureaucrat) {
+void Form::beSigned(Bureaucrat &bureaucrat)
+{
 	try
 	{
 		if (this->getGradeToSign() < bureaucrat.getGrade())
@@ -91,14 +89,16 @@ void Form::beSigned(Bureaucrat &bureaucrat) {
 	}
 }
 
-bool Form::checkFormSignedStatus(void) const {
+bool Form::checkFormSignedStatus(void) const
+{
 
 	if (this->getSignedResult())
 		return true;
 	return false;
 }
 
-bool Form::checkFormExecuteGrade(const Bureaucrat &executor) const {
+bool Form::checkFormExecuteGrade(const Bureaucrat &executor) const
+{
 	try
 	{
 		if (this->getGradeToExecute() < executor.getGrade())
@@ -112,20 +112,23 @@ bool Form::checkFormExecuteGrade(const Bureaucrat &executor) const {
 	return true;
 }
 
-void Form::setFormTarget(std::string target) {
+void Form::setFormTarget(std::string target)
+{
 	this->_target = target;
 }
 
-std::string Form::getFormTarget() const {
+std::string Form::getFormTarget() const
+{
 	return this->_target;
 }
 
-
-void Form::setSignedResult(bool signedResult) {
+void Form::setSignedResult(bool signedResult)
+{
 	this->_signed = signedResult;
 }
 
-void Form::execute(const Bureaucrat &executor) const {
+void Form::execute(const Bureaucrat &executor) const
+{
 	if (!this->checkFormSignedStatus())
 		std::cout << MAGENTA << "<" << this->getName() << "> cannot be executed by <" << executor.getName() << "> because the form is not signed." << RESET << std::endl;
 	else if (!this->checkFormExecuteGrade(executor))
@@ -134,7 +137,8 @@ void Form::execute(const Bureaucrat &executor) const {
 		executeForm();
 }
 
-std::ostream &operator<<(std::ostream &o, const Form &form) {
+std::ostream &operator<<(std::ostream &o, const Form &form)
+{
 	if (form.getSignedResult())
 		o << BLUE << "Form <" << form.getName() << "> is signed." << RESET;
 	else
