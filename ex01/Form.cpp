@@ -6,15 +6,13 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 16:59:34 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 17:14:02 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 17:20:27 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "Form.hpp"
 
-Form::Form() : _name("null"), _signed(false), _gradeToSign(0), _gradeToExecute(0) {
-	return;
+Form::Form() : _name("name"), _signed(false), _gradeToSign(0), _gradeToExecute(0) {
 }
 
 Form::Form(std::string name, int gradeToSign, int gradeToExecute) :

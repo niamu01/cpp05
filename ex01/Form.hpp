@@ -6,14 +6,13 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 16:59:36 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 17:13:26 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 17:15:26 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
 #define FORM_HPP
 
-//#include <string>
 #include "Bureaucrat.hpp"
 
 class Form {
