@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 21:07:48 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 21:16:54 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 22:09:26 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,13 +119,13 @@ std::ostream &operator<<(std::ostream &out, Form const &form)
 	if (form.getSigned())
 	{
 		out << GREEN;
-		out << "Form <" << form.getName() << "> is signed.";
+		out << "Form " << form.getName() << " is signed.";
 		out << RESET;
 	}
 	else
 	{
 		out << RED;
-		out << "Form <" << form.getName() << "> is not signed.";
+		out << "Form " << form.getName() << " is not signed.";
 		out << RESET;
 	}
 	return (out);
@@ -136,13 +136,13 @@ void Form::execute(const Bureaucrat &executor) const
 	if (!this->checkFormSignedStatus())
 	{
 		std::cout << RED;
-		std::cout << "<" << this->getName() << "> cannot be executed by <" << executor.getName() << "> because the form is not signed." << std::endl;
+		std::cout << this->getName() << " can't executed "<< executor.getName() << ", because the form is not signed." << std::endl;
 		std::cout << RESET;
 	}
 	else if (!this->checkFormExecuteGrade(executor))
 	{
 		std::cout << RED;
-		std::cout << "<" << this->getName() << "> cannot be executed by <" << executor.getName() << "> because the executor does not have a high enough score." << std::endl;
+		std::cout << this->getName() << " can't executed "<< executor.getName() << ", because the form does not have a high score." << std::endl;
 		std::cout << RESET;
 	}
 	else

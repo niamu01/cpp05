@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 12:05:59 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 21:00:08 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 22:06:46 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,13 +148,13 @@ void Bureaucrat::signForm(Form &form)
 	{
 		form.setSigned(true);
 		std::cout << GREEN;
-		std::cout << "<" << this->getName() << "> signed <" << form.getName() << ">" << std::endl;
+		std::cout << this->getName() << " signed " << form.getName() << std::endl;
 		std::cout << RESET;
 	}
 	else
 	{
 		std::cout << RED;
-		std::cout << "<" << this->getName() << "> couldn’t sign <" << form.getName() << "> because <the bureaucrat's grade is lower than the form's grade to sign>" << std::endl;
+		std::cout << this->getName() << " couldn’t sign " << form.getName() << " because <the bureaucrat's grade is lower than the form's grade to sign>" << std::endl;
 		std::cout << RESET;
 	}
 }

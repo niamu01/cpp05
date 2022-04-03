@@ -6,18 +6,18 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:29:08 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 20:54:40 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 21:57:39 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : Form("presidential pardon", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm() : Form("name_presidential", 25, 5)
 {
 	std::cout << "PresidentialPardonForm: Default constructor called" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : Form("presidential pardon", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : Form("name_presidential", 25, 5)
 {
 	std::cout << "PresidentialPardonForm: Constructor called" << std::endl;
 	this->setFormTarget(target);
@@ -44,7 +44,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 
 void PresidentialPardonForm::executeForm() const
 {
-	std::cout << BLUE;
+	std::cout << CYAN;
 	std::cout << this->getFormTarget() << " has been pardoned by Zafod Beeblebrox." << std::endl;
 	std::cout << RESET;
 }

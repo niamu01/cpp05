@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 19:07:21 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 21:03:36 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 22:09:18 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 
 Bureaucrat::~Bureaucrat()
 {
-
 	std::cout << "Bureaucrat: Destructor called" << std::endl;
 	std::cout << CYAN;
 	std::cout << "Bureaucrat: " << this->getName() << " is destroyed by Destructor" << std::endl;
@@ -149,35 +148,35 @@ void Bureaucrat::signForm(Form &form)
 	{
 		form.setSigned(true);
 		std::cout << GREEN;
-		std::cout << "<" << this->getName() << "> signed <" << form.getName() << ">" << std::endl;
+		std::cout << this->getName() << " signed " << form.getName() << std::endl;
 		std::cout << RESET;
 	}
 	else
 	{
 		std::cout << RED;
-		std::cout << "<" << this->getName() << "> couldn’t sign <" << form.getName() << "> because <the bureaucrat's grade is lower than the form's grade to sign>" << std::endl;
+		std::cout << this->getName() << " couldn’t sign " << form.getName() << " because the bureaucrat's grade is lower than the form's grade to sign" << std::endl;
 		std::cout << RESET;
 	}
 }
 
 void Bureaucrat::executeForm(Form const &form)
 {
-
 	if (!form.checkFormSignedStatus())
 	{
 		std::cout << RED;
-		std::cout << "<" << this->getName() << "> can't executed  <" << form.getName() << ">, because the form is not signed" << std::endl;
+		std::cout << this->getName() << " can't executed " << form.getName() << ", because the form is not signed" << std::endl;
 		std::cout << RESET;
 	}
 	else if (!form.checkFormExecuteGrade(*this))
+	{
 		std::cout << RED;
-		std::cout << "<" << this->getName() << "> can't executed <" << form.getName() << ">, because the executor does not have a high enough score" << std::endl;
+		std::cout << this->getName() << " can't executed " << form.getName() << ", because the executor does not have a high score" << std::endl;
 		std::cout << RESET;
 	}
 	else
 	{
 		std::cout << GREEN;
-		std::cout << "<" << this->getName() << "> executed <" << form.getName() << ">" << std::endl;
+		std::cout << this->getName() << " executed " << form.getName() << std::endl;
 		std::cout << RESET;
 		form.executeForm();
 	}

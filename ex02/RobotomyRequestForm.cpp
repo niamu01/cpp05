@@ -6,18 +6,18 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:12:10 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 20:54:40 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 22:08:26 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : Form("robotomy request", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm() : Form("name_robotomy", 72, 45)
 {
 	std::cout << "RobotomyRequestForm: Default constructor called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : Form("robotomy request", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : Form("name_robotomy", 72, 45)
 {
 	std::cout << "RobotomyRequestForm: Constructor called" << std::endl;
 	this->setFormTarget(target);
@@ -54,13 +54,13 @@ void RobotomyRequestForm::executeForm() const
 	if (randomnum)
 	{
 		std::cout << GREEN;
-		std::cout << "<" << this->getFormTarget() << "> has been robotomized successfully" << std::endl;
+		std::cout << this->getFormTarget() << " has been robotomized successfully" << std::endl;
 		std::cout << RESET;
 	}
 	else
 	{
 		std::cout << RED;
-		std::cout << "<" << this->getFormTarget() << ">. has been failed to robotomized" << std::endl;
+		std::cout << this->getFormTarget() << " has been failed to robotomized" << std::endl;
 		std::cout << RESET;
 	}
 }

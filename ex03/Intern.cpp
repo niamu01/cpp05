@@ -41,7 +41,7 @@ Form *Intern::makeForm(std::string formName, std::string formTarget)
 	{
 		if (formName == array[i])
 		{
-			std::cout << BLUE << "Intern creates <" << formName << ">." << RESET << std::endl;
+			std::cout << BLUE << "Intern creates " << formName << RESET << std::endl;
 			return CALL_CREATE_FORM(*this, list[i])(formTarget);
 		}
 	}

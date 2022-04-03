@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 16:59:34 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 20:23:32 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 22:06:55 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,13 +119,13 @@ std::ostream &operator<<(std::ostream &out, Form const &form)
 	if (form.getSigned())
 	{
 		out << GREEN;
-		out << "Form <" << form.getName() << "> is signed.";
+		out << "Form " << form.getName() << " is signed.";
 		out << RESET;
 	}
 	else
 	{
 		out << RED;
-		out << "Form <" << form.getName() << "> is not signed.";
+		out << "Form " << form.getName() << " is not signed.";
 		out << RESET;
 	}
 	return (out);

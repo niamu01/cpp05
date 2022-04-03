@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 12:05:59 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 19:05:43 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 21:57:57 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # define RED "\e[31m"
 # define GREEN "\e[32m"
 # define YELLOW "\e[33m"
-// # define BLUE "\e[34m"
-// # define PURPLE "\e[35m"
 # define CYAN "\e[36m"
 
 class Form;
