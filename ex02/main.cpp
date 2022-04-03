@@ -7,8 +7,7 @@
 
 int main(void)
 {
-	std::cout << std::endl
-			  << "--ShrubberyCreationForm--" << std::endl;
+	std::cout << std::endl << "--ShrubberyCreationForm--" << std::endl;
 
 	{
 		Bureaucrat highGrade("highGrade", 1);

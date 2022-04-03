@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 12:05:59 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 17:13:30 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 17:38:56 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 # define RED "\e[31m"
 // # define GREEN "\e[32m"
 # define YELLOW "\e[33m"
-# define BLUE "\e[34m"
+// # define BLUE "\e[34m"
 // # define PURPLE "\e[35m"
-// # define CYAN "\e[36m"
+# define CYAN "\e[36m"
 
 class Bureaucrat
 {

@@ -109,7 +109,7 @@ void Bureaucrat::signForm(Form &form)
 {
 	if (form.getGradeToSign() >= this->getGrade())
 	{
-		form.setSignedResult(true);
+		form.setSigned(true);
 		std::cout << CYAN << "<" << this->getName() << "> signs <" << form.getName() << ">" << RESET << std::endl;
 	}
 	else

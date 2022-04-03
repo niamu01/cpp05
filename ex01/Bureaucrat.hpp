@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 12:05:59 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 17:22:20 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 19:05:43 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,38 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
+#include "Form.hpp"
 
-#define RESET "\e[0m"
-#define RED "\e[31m"
-#define GREEN "\e[32m"
-#define YELLOW "\e[33m"
-#define BLUE "\e[34m"
-#define PURPLE "\e[35m" // MAGENTA
-#define CYAN "\e[36m"
+# define RESET "\e[0m"
+# define RED "\e[31m"
+# define GREEN "\e[32m"
+# define YELLOW "\e[33m"
+// # define BLUE "\e[34m"
+// # define PURPLE "\e[35m"
+# define CYAN "\e[36m"
 
 class Form;
 
 class Bureaucrat
 {
-
 private:
 	const std::string _name;
 	int _grade;
-	Bureaucrat();
-
 public:
+	Bureaucrat();
 	Bureaucrat(std::string name, int grade);
 	Bureaucrat(Bureaucrat const &rhs);
 	~Bureaucrat();
+
 	Bureaucrat &operator=(Bureaucrat const &rhs);
 
 	std::string getName() const;
 	int getGrade() const;
-	void setGrade(int);
-	void incrementGrade(int);
-	void decrementGrade(int);
+	
+	void setGrade(int grade);
+	
+	void incrementGrade(int amount);
+	void decrementGrade(int amount);
 
 	void signForm(Form &form);
 
@@ -52,7 +54,7 @@ public:
 	public:
 		const char *what() const throw()
 		{
-			return ("Grade is too high (smaller than 1).");
+			return ("Grade is too high");
 		}
 	};
 
@@ -61,11 +63,11 @@ public:
 	public:
 		const char *what() const throw()
 		{
-			return ("Grade is too low (bigger than 150).");
+			return ("Grade is too low");
 		}
 	};
 };
 
-std::ostream &operator<<(std::ostream &o, Bureaucrat const &i);
+std::ostream &operator<<(std::ostream &out, Bureaucrat const &bureaucrat);
 
 #endif

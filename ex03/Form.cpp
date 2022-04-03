@@ -34,7 +34,7 @@ Form::~Form()
 	std::cout << MAGENTA << "* Form <" << this->getName() << "> is destroyed. *" << RESET << std::endl;
 }
 
-Form::Form(const Form &rhs) : _name(rhs.getName()), _signed(rhs.getSignedResult()), _gradeToSign(rhs.getGradeToSign()), _gradeToExecute(rhs.getGradeToExecute())
+Form::Form(const Form &rhs) : _name(rhs.getName()), _signed(rhs.getSigned()), _gradeToSign(rhs.getGradeToSign()), _gradeToExecute(rhs.getGradeToExecute())
 {
 	std::cout << YELLOW << "Form copy constructor is called." << std::endl;
 	*this = rhs;
@@ -45,7 +45,7 @@ Form &Form::operator=(const Form &rhs)
 	std::cout << YELLOW << "Form assignation operator is called." << std::endl;
 	if (this != &rhs)
 	{
-		this->_signed = rhs.getSignedResult();
+		this->_signed = rhs.getSigned();
 	}
 	return *this;
 }
@@ -55,7 +55,7 @@ std::string Form::getName() const
 	return this->_name;
 }
 
-bool Form::getSignedResult() const
+bool Form::getSigned() const
 {
 	return this->_signed;
 }
@@ -84,7 +84,7 @@ void Form::beSigned(Bureaucrat &bureaucrat)
 	}
 	if (this->getGradeToSign() >= bureaucrat.getGrade())
 	{
-		this->setSignedResult(true);
+		this->setSigned(true);
 		std::cout << BLUE << "<" << this->getName() << "> is signed by <" << bureaucrat.getName() << ">" << RESET << std::endl;
 	}
 }
@@ -92,7 +92,7 @@ void Form::beSigned(Bureaucrat &bureaucrat)
 bool Form::checkFormSignedStatus(void) const
 {
 
-	if (this->getSignedResult())
+	if (this->getSigned())
 		return true;
 	return false;
 }
@@ -122,9 +122,9 @@ std::string Form::getFormTarget() const
 	return this->_target;
 }
 
-void Form::setSignedResult(bool signedResult)
+void Form::setSigned(bool sign)
 {
-	this->_signed = signedResult;
+	this->_signed = sign;
 }
 
 void Form::execute(const Bureaucrat &executor) const
@@ -139,7 +139,7 @@ void Form::execute(const Bureaucrat &executor) const
 
 std::ostream &operator<<(std::ostream &o, const Form &form)
 {
-	if (form.getSignedResult())
+	if (form.getSigned())
 		o << BLUE << "Form <" << form.getName() << "> is signed." << RESET;
 	else
 		o << RED << "Form <" << form.getName() << "> is not signed." << RESET;

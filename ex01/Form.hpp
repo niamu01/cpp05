@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 16:59:36 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 17:22:14 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 18:15:38 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define FORM_HPP
 
 #include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {
@@ -32,11 +34,11 @@ public:
 	Form &operator=(Form const &rhs);
 
 	std::string getName() const;
-	bool getSignedResult() const;
+	bool getSigned() const;
 	int getGradeToSign() const;
 	int getGradeToExecute() const;
 
-	void setSignedResult(bool signedResult);
+	void setSigned(bool sign);
 
 	void beSigned(Bureaucrat &bureaucrat);
 

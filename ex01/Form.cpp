@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 16:59:34 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 17:22:11 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 20:23:32 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 Form::Form() : _name("name"), _signed(false), _gradeToSign(0), _gradeToExecute(0)
 {
+	std::cout << "Form: Default constructor called" << std::endl;
 }
 
 Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
-
+	std::cout << "Form: Constructor called" << std::endl;
 	try
 	{
 		if (this->getGradeToSign() < 1 || this->getGradeToExecute() < 1)
@@ -26,62 +27,68 @@ Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name),
 		else if (this->getGradeToSign() > 150 || this->getGradeToExecute() > 150)
 			throw GradeTooLowException();
 	}
-	catch (const GradeTooHighException &e)
+	catch (const GradeTooHighException &_throw)
 	{
-		std::cout << RED << e.what() << RESET << std::endl;
+		std::cout << YELLOW;
+		std::cout << _throw.what() << std::endl;
+		std::cout << RESET;
 	}
-	catch (const GradeTooLowException &e)
+	catch (const GradeTooLowException &_throw)
 	{
-		std::cout << RED << e.what() << RESET << std::endl;
+		std::cout << YELLOW;
+		std::cout << _throw.what() << std::endl;
+		std::cout << RESET;
 	}
-
-	std::cout << GREEN << "* Form <" << this->getName() << "> is created with <" << this->getGradeToSign() << "> grade to sign and <" << this->getGradeToExecute() << "> to execute. *" << RESET << std::endl;
+	std::cout << CYAN;
+	std::cout << "Form '" << this->getName() << "' is created by Constructor"  << std::endl;
+	std::cout << "'" << this->getGradeToSign() << "'grade to sign and '" << this->getGradeToExecute() << "' to execute" << std::endl;
+	std::cout << RESET;
 }
 
 Form::~Form()
 {
-	std::cout << PURPLE << "* Form <" << this->getName() << "> is destroyed. *" << RESET << std::endl;
+	std::cout << "Form: Destructor called" << std::endl;
+	std::cout << CYAN;
+	std::cout << "Form: " << this->getName() << " is destroyed by Destructor" << std::endl;
+	std::cout << RESET;
 }
 
-Form::Form(const Form &rhs) : _name(rhs.getName()), _signed(rhs.getSignedResult()), _gradeToSign(rhs.getGradeToSign()), _gradeToExecute(rhs.getGradeToExecute())
+Form::Form(Form const &rhs) : _name(rhs.getName()), _signed(rhs.getSigned()), _gradeToSign(rhs.getGradeToSign()), _gradeToExecute(rhs.getGradeToExecute())
 {
-	std::cout << YELLOW << "Form copy constructor is called." << std::endl;
+	std::cout << "Form: Copy constructor called" << std::endl;
 	*this = rhs;
 }
 
-Form &Form::operator=(const Form &rhs)
+Form &Form::operator=(Form const &rhs)
 {
-	std::cout << YELLOW << "Form assignation operator is called." << std::endl;
-	if (this != &rhs)
-	{
-		this->_signed = rhs.getSignedResult();
-	}
-	return *this;
+	std::cout << "Form: assignation operator is called" << std::endl;
+	this->_signed = rhs.getSigned();
+	return (*this);
 }
 
 std::string Form::getName() const
 {
-	return this->_name;
+	return (this->_name);
 }
 
-bool Form::getSignedResult() const
+bool Form::getSigned() const
 {
-	return this->_signed;
+	return (this->_signed);
 }
 
-void Form::setSignedResult(bool signedResult)
+void Form::setSigned(bool sign)
 {
-	this->_signed = signedResult;
+	this->_signed = sign;
 }
 
 int Form::getGradeToSign() const
 {
-	return this->_gradeToSign;
+	return (this->_gradeToSign);
 }
 
 int Form::getGradeToExecute() const
 {
-	return this->_gradeToExecute;
+	return (this->_gradeToExecute);
 }
 
 void Form::beSigned(Bureaucrat &bureaucrat)
@@ -91,23 +98,35 @@ void Form::beSigned(Bureaucrat &bureaucrat)
 		if (this->getGradeToSign() < bureaucrat.getGrade())
 			throw GradeTooLowException();
 	}
-	catch (const GradeTooLowException &e)
+	catch (const GradeTooLowException &_throw)
 	{
-		std::cout << RED << e.what() << RESET << std::endl;
+		std::cout << RED;
+		std::cout << _throw.what() << std::endl;
+		std::cout << RESET;
 		return;
 	}
 	if (this->getGradeToSign() >= bureaucrat.getGrade())
 	{
+		std::cout << CYAN;
+		std::cout << bureaucrat.getName() << " signed " << this->getName() << std::endl;
+		std::cout << RESET;
 		this->_signed = true;
-		std::cout << BLUE << "<" << this->getName() << "> is signed by <" << bureaucrat.getName() << ">" << RESET << std::endl;
 	}
 }
 
-std::ostream &operator<<(std::ostream &o, const Form &form)
+std::ostream &operator<<(std::ostream &out, Form const &form)
 {
-	if (form.getSignedResult())
-		o << BLUE << "Form <" << form.getName() << "> is signed.";
+	if (form.getSigned())
+	{
+		out << GREEN;
+		out << "Form <" << form.getName() << "> is signed.";
+		out << RESET;
+	}
 	else
-		o << RED << "Form <" << form.getName() << "> is not signed.";
-	return o;
+	{
+		out << RED;
+		out << "Form <" << form.getName() << "> is not signed.";
+		out << RESET;
+	}
+	return (out);
 }

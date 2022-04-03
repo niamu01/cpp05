@@ -30,7 +30,7 @@ public:
 	Form &operator=(Form const &rhs);
 
 	std::string getName() const;
-	bool getSignedResult() const;
+	bool getSigned() const;
 	int getGradeToSign() const;
 	int getGradeToExecute() const;
 	void beSigned(Bureaucrat &bureaucrat);
@@ -42,7 +42,7 @@ public:
 
 	void setFormTarget(std::string target);
 	std::string getFormTarget() const;
-	void setSignedResult(bool signedResult);
+	void setSigned(bool signed);
 
 	class GradeTooHighException : public std::exception
 	{

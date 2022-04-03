@@ -29,7 +29,7 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 {
 	if (this != &rhs)
 	{
-		this->setSignedResult(rhs.getSignedResult());
+		this->setSigned(rhs.getSigned());
 		this->setFormTarget(rhs.getFormTarget());
 	}
 	return *this;
