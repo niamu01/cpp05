@@ -1,7 +1,6 @@
 
 #include "Form.hpp"
 #include "Intern.hpp"
-#include <iostream>
 
 int main(void)
 {

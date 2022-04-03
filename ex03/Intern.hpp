@@ -1,6 +1,7 @@
 
 #ifndef INTERN_HPP
 #define INTERN_HPP
+
 #include "Form.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
@@ -8,7 +9,6 @@
 
 class Intern
 {
-
 public:
 	Intern();
 	~Intern();
@@ -21,7 +21,6 @@ public:
 	Form *createShrubberyCreation(std::string formTarget);
 };
 
-// createFormFunction points to a member function of Intern that takes (std::string)
 typedef Form *(Intern::*createFormFunction)(std::string formTarget);
 
-#endif // INTERN_HPP
+#endif

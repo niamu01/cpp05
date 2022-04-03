@@ -1,15 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Form.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/03 21:07:48 by yeju              #+#    #+#             */
+/*   Updated: 2022/04/03 22:09:26 by yeju             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <iostream>
 #include "Form.hpp"
 
-Form::Form() : _name("null"), _signed(false), _gradeToSign(0), _gradeToExecute(0)
+Form::Form() : _name("name"), _signed(false), _gradeToSign(0), _gradeToExecute(0)
 {
-	return;
+	std::cout << "Form: Default constructor called" << std::endl;
 }
 
 Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name), _signed(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
-
+	std::cout << "Form: Constructor called" << std::endl;
 	try
 	{
 		if (this->getGradeToSign() < 1 || this->getGradeToExecute() < 1)
@@ -17,57 +27,68 @@ Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name),
 		else if (this->getGradeToSign() > 150 || this->getGradeToExecute() > 150)
 			throw GradeTooLowException();
 	}
-	catch (const GradeTooHighException &e)
+	catch (const GradeTooHighException &_throw)
 	{
-		std::cout << RED << e.what() << RESET << std::endl;
+		std::cout << YELLOW;
+		std::cout << _throw.what() << std::endl;
+		std::cout << RESET;
 	}
-	catch (const GradeTooLowException &e)
+	catch (const GradeTooLowException &_throw)
 	{
-		std::cout << RED << e.what() << RESET << std::endl;
+		std::cout << YELLOW;
+		std::cout << _throw.what() << std::endl;
+		std::cout << RESET;
 	}
-
-	std::cout << GREEN << "* Form <" << this->getName() << "> is created with <" << this->getGradeToSign() << "> grade to sign and <" << this->getGradeToExecute() << "> to execute. *" << RESET << std::endl;
+	std::cout << CYAN;
+	std::cout << "Form '" << this->getName() << "' is created by Constructor"  << std::endl;
+	std::cout << "'" << this->getGradeToSign() << "'grade to sign and '" << this->getGradeToExecute() << "' to execute" << std::endl;
+	std::cout << RESET;
 }
 
 Form::~Form()
 {
-	std::cout << MAGENTA << "* Form <" << this->getName() << "> is destroyed. *" << RESET << std::endl;
+	std::cout << "Form: Destructor called" << std::endl;
+	std::cout << CYAN;
+	std::cout << "Form: " << this->getName() << " is destroyed by Destructor" << std::endl;
+	std::cout << RESET;
 }
 
 Form::Form(const Form &rhs) : _name(rhs.getName()), _signed(rhs.getSigned()), _gradeToSign(rhs.getGradeToSign()), _gradeToExecute(rhs.getGradeToExecute())
 {
-	std::cout << YELLOW << "Form copy constructor is called." << std::endl;
+	std::cout << "Form: Copy constructor called" << std::endl;
 	*this = rhs;
 }
 
 Form &Form::operator=(const Form &rhs)
 {
-	std::cout << YELLOW << "Form assignation operator is called." << std::endl;
-	if (this != &rhs)
-	{
-		this->_signed = rhs.getSigned();
-	}
-	return *this;
+	std::cout << "Form: assignation operator is called" << std::endl;
+	this->_signed = rhs.getSigned();
+	return (*this);
 }
 
 std::string Form::getName() const
 {
-	return this->_name;
+	return (this->_name);
 }
 
 bool Form::getSigned() const
 {
-	return this->_signed;
+	return (this->_signed);
+}
+
+void Form::setSigned(bool sign)
+{
+	this->_signed = sign;
 }
 
 int Form::getGradeToSign() const
 {
-	return this->_gradeToSign;
+	return (this->_gradeToSign);
 }
 
 int Form::getGradeToExecute() const
 {
-	return this->_gradeToExecute;
+	return (this->_gradeToExecute);
 }
 
 void Form::beSigned(Bureaucrat &bureaucrat)
@@ -77,39 +98,79 @@ void Form::beSigned(Bureaucrat &bureaucrat)
 		if (this->getGradeToSign() < bureaucrat.getGrade())
 			throw GradeTooLowException();
 	}
-	catch (const GradeTooLowException &e)
+	catch (const GradeTooLowException &_throw)
 	{
-		std::cout << RED << e.what() << RESET << std::endl;
+		std::cout << RED;
+		std::cout << _throw.what() << std::endl;
+		std::cout << RESET;
 		return;
 	}
 	if (this->getGradeToSign() >= bureaucrat.getGrade())
 	{
-		this->setSigned(true);
-		std::cout << BLUE << "<" << this->getName() << "> is signed by <" << bureaucrat.getName() << ">" << RESET << std::endl;
+		std::cout << CYAN;
+		std::cout << bureaucrat.getName() << " signed " << this->getName() << std::endl;
+		std::cout << RESET;
+		this->_signed = true;
 	}
+}
+
+std::ostream &operator<<(std::ostream &out, Form const &form)
+{
+	if (form.getSigned())
+	{
+		out << GREEN;
+		out << "Form " << form.getName() << " is signed.";
+		out << RESET;
+	}
+	else
+	{
+		out << RED;
+		out << "Form " << form.getName() << " is not signed.";
+		out << RESET;
+	}
+	return (out);
+}
+
+void Form::execute(const Bureaucrat &executor) const
+{
+	if (!this->checkFormSignedStatus())
+	{
+		std::cout << RED;
+		std::cout << this->getName() << " can't executed "<< executor.getName() << ", because the form is not signed." << std::endl;
+		std::cout << RESET;
+	}
+	else if (!this->checkFormExecuteGrade(executor))
+	{
+		std::cout << RED;
+		std::cout << this->getName() << " can't executed "<< executor.getName() << ", because the form does not have a high score." << std::endl;
+		std::cout << RESET;
+	}
+	else
+		executeForm();
 }
 
 bool Form::checkFormSignedStatus(void) const
 {
-
 	if (this->getSigned())
-		return true;
-	return false;
+		return (true);
+	return (false);
 }
 
-bool Form::checkFormExecuteGrade(const Bureaucrat &executor) const
+bool Form::checkFormExecuteGrade(const Bureaucrat &execute) const
 {
 	try
 	{
-		if (this->getGradeToExecute() < executor.getGrade())
+		if (this->getGradeToExecute() < execute.getGrade())
 			throw GradeTooLowException();
 	}
-	catch (const GradeTooLowException &e)
+	catch (const GradeTooLowException &_throw)
 	{
-		std::cout << RED << e.what() << RESET << std::endl;
-		return false;
+		std::cout << RED;
+		std::cout << _throw.what() << std::endl;
+		std::cout << RESET;
+		return (false);
 	}
-	return true;
+	return (true);
 }
 
 void Form::setFormTarget(std::string target)
@@ -119,29 +180,5 @@ void Form::setFormTarget(std::string target)
 
 std::string Form::getFormTarget() const
 {
-	return this->_target;
-}
-
-void Form::setSigned(bool sign)
-{
-	this->_signed = sign;
-}
-
-void Form::execute(const Bureaucrat &executor) const
-{
-	if (!this->checkFormSignedStatus())
-		std::cout << MAGENTA << "<" << this->getName() << "> cannot be executed by <" << executor.getName() << "> because the form is not signed." << RESET << std::endl;
-	else if (!this->checkFormExecuteGrade(executor))
-		std::cout << MAGENTA << "<" << this->getName() << "> cannot be executed by <" << executor.getName() << "> because the executor does not have a high enough score." << RESET << std::endl;
-	else
-		executeForm();
-}
-
-std::ostream &operator<<(std::ostream &o, const Form &form)
-{
-	if (form.getSigned())
-		o << BLUE << "Form <" << form.getName() << "> is signed." << RESET;
-	else
-		o << RED << "Form <" << form.getName() << "> is not signed." << RESET;
-	return o;
+	return (this->_target);
 }

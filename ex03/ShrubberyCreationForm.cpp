@@ -1,56 +1,75 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/03 19:33:56 by yeju              #+#    #+#             */
+/*   Updated: 2022/04/03 21:27:32 by yeju             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
-#include <iostream>
-#include <fstream>
-#include "Form.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : Form("shrubbery creation", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm() : Form("name_shrubbery", 145, 137)
 {
-	return;
+	std::cout << "ShrubberyCreationForm: Default constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form("shrubbery creation", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form("name_shrubbery", 145, 137)
 {
+	std::cout << "ShrubberyCreationForm: Constructor called" << std::endl;
 	this->setFormTarget(target);
 }
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-	return;
+	std::cout << "ShrubberyCreationForm: Destructor called" << std::endl;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &rhs) : Form(rhs.getName(), rhs.getGradeToSign(), rhs.getGradeToExecute())
 {
-	std::cout << YELLOW << "<ShrubberyCreationForm> copy constructor is called." << RESET << std::endl;
+	std::cout << "ShrubberyCreationForm: Copy constructor called" << std::endl;
 	*this = rhs;
 }
 
 ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &rhs)
 {
-	if (this != &rhs)
-	{
-		this->setSigned(rhs.getSigned());
-		this->setFormTarget(rhs.getFormTarget());
-	}
-	return *this;
+	std::cout << "ShrubberyCreationForm: assignation operator is called." << std::endl;
+	this->setSigned(rhs.getSigned());
+	this->setFormTarget(rhs.getFormTarget());
+	return (*this);
 }
 
 void ShrubberyCreationForm::executeForm() const
 {
-	std::ifstream inFile;
-	inFile.open("ascii.txt");
-	if (!inFile)
-		std::cout << RED << "Open file error." << RESET << std::endl;
-
+	std::ifstream fin;
 	std::string fileName = this->getFormTarget() + "_shrubbery";
+	std::ofstream fout(fileName.c_str());
 
-	std::ofstream outFile(fileName.c_str());
-	if (!outFile)
-		std::cout << RED << "Create file error." << RESET << std::endl;
+	fin.open("ascii.txt");
 
-	std::string line;
+	if (fin.fail())
+	{
+		std::cout << RED;
+		std::cout << "FILE OPEN ERROR" << std::endl;
+		std::cout << RESET;
+		return ;
+	}
+	if (fout.fail())
+	{
+		std::cout << RED;
+		std::cout << "Create file error." << std::endl;
+		std::cout << RESET;
+		return ;
+	}
 
-	while (getline(inFile, line))
-		outFile << line << std::endl;
-	outFile.close();
+	std::string word;
+	while (std::getline(fin, word))
+		fout << word << std::endl;
+	fout << std::endl;
+
+	fout.close();
+	fin.close();
 }

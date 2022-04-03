@@ -1,40 +1,50 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/03 20:29:08 by yeju              #+#    #+#             */
+/*   Updated: 2022/04/03 21:57:39 by yeju             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <iostream>
 #include "PresidentialPardonForm.hpp"
-#include "Form.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : Form("presidential pardon", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm() : Form("name_presidential", 25, 5)
 {
-	return;
+	std::cout << "PresidentialPardonForm: Default constructor called" << std::endl;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : Form("presidential pardon", 25, 5)
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : Form("name_presidential", 25, 5)
 {
+	std::cout << "PresidentialPardonForm: Constructor called" << std::endl;
 	this->setFormTarget(target);
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {
-	return;
+	std::cout << "PresidentialPardonForm: Destructor called" << std::endl;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &rhs) : Form(rhs.getName(), rhs.getGradeToSign(), rhs.getGradeToExecute())
 {
-	std::cout << YELLOW << "<PresidentialPardonForm> copy constructor is called." << RESET << std::endl;
+	std::cout << "PresidentialPardonForm: Copy constructor called" << std::endl;
 	*this = rhs;
 }
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &rhs)
 {
-	if (this != &rhs)
-	{
-		this->setSigned(rhs.getSigned());
-		this->setFormTarget(rhs.getFormTarget());
-	}
-	return *this;
+	std::cout << "PresidentialPardonForm: assignation operator is called" << std::endl;
+	this->setSigned(rhs.getSigned());
+	this->setFormTarget(rhs.getFormTarget());
+	return (*this);
 }
 
 void PresidentialPardonForm::executeForm() const
 {
-	std::cout << BLUE << this->getFormTarget() << " has been pardoned by Zafod Beeblebrox." << RESET << std::endl;
+	std::cout << CYAN;
+	std::cout << this->getFormTarget() << " has been pardoned by Zafod Beeblebrox." << std::endl;
+	std::cout << RESET;
 }

@@ -1,55 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/03 19:21:46 by yeju              #+#    #+#             */
+/*   Updated: 2022/04/03 20:54:40 by yeju             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef FORM_HPP
 #define FORM_HPP
-#include <string>
+
 #include "Bureaucrat.hpp"
 
-#define RESET "\033[0m"
-#define RED "\033[31m"	   /* Red */
-#define GREEN "\033[32m"   /* Green */
-#define YELLOW "\033[33m"  /* Yellow */
-#define BLUE "\033[34m"	   /* Blue */
-#define MAGENTA "\033[35m" /* Magenta */
-#define CYAN "\033[36m"	   /* Cyan */
+class Bureaucrat;
 
 class Form
 {
-
 private:
 	const std::string _name;
 	bool _signed;
 	const int _gradeToSign;
 	const int _gradeToExecute;
 	std::string _target;
-	Form();
 
 public:
+	Form();
 	Form(std::string name, int gradeToSign, int gradeToExecute);
-	virtual ~Form();
 	Form(Form const &rhs);
+	virtual ~Form();
+
 	Form &operator=(Form const &rhs);
 
 	std::string getName() const;
 	bool getSigned() const;
 	int getGradeToSign() const;
 	int getGradeToExecute() const;
+
+	void setSigned(bool sign);
+	
 	void beSigned(Bureaucrat &bureaucrat);
-
-	void execute(Bureaucrat const &executor) const;
-	virtual void executeForm() const = 0;
-	bool checkFormSignedStatus() const;
-	bool checkFormExecuteGrade(Bureaucrat const &executor) const;
-
-	void setFormTarget(std::string target);
-	std::string getFormTarget() const;
-	void setSigned(bool signed);
 
 	class GradeTooHighException : public std::exception
 	{
 	public:
 		virtual const char *what() const throw()
 		{
-			return ("<Form> Grade too high (smaller than 1).");
+			return ("Form: Grade is too high");
 		}
 	};
 
@@ -58,11 +57,22 @@ public:
 	public:
 		virtual const char *what() const throw()
 		{
-			return ("<Form> Grade too low (bigger than 150).");
+			return ("Form: Grade is too low");
 		}
 	};
+
+	virtual void executeForm() const = 0;
+
+	void execute(Bureaucrat const &executor) const;
+	
+	bool checkFormSignedStatus() const;
+	bool checkFormExecuteGrade(Bureaucrat const &executor) const;
+
+	void setFormTarget(std::string target);
+	std::string getFormTarget() const;
+	
 };
 
-std::ostream &operator<<(std::ostream &o, Form const &form);
+std::ostream &operator<<(std::ostream &out, Form const &form);
 
-#endif // FORM_HPP
+#endif

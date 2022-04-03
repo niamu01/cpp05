@@ -5,7 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/03 19:30:41 by yeju              #+#    #+#             */
+/*   Created: 2022/04/03 19:33:27 by yeju              #+#    #+#             */
 /*   Updated: 2022/04/03 20:54:40 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -14,6 +14,7 @@
 #define SHRUBBERYCREATIONFORM_HPP
 
 #include "Form.hpp"
+#include <fstream>
 
 class ShrubberyCreationForm : public Form
 {

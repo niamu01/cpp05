@@ -1,48 +1,66 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/03 20:12:10 by yeju              #+#    #+#             */
+/*   Updated: 2022/04/03 22:08:26 by yeju             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
-#include <iostream>
-#include <cstdlib>
-#include "Form.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : Form("robotomy request", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm() : Form("name_robotomy", 72, 45)
 {
-	return;
+	std::cout << "RobotomyRequestForm: Default constructor called" << std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : Form("robotomy request", 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : Form("name_robotomy", 72, 45)
 {
+	std::cout << "RobotomyRequestForm: Constructor called" << std::endl;
 	this->setFormTarget(target);
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {
-	return;
+	std::cout << "RobotomyRequestForm: Destructor called" << std::endl;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rhs) : Form(rhs.getName(), rhs.getGradeToSign(), rhs.getGradeToExecute())
 {
-	std::cout << YELLOW << "<RobotomyRequestForm> copy constructor is called." << RESET << std::endl;
+	std::cout << "RobotomyRequestForm: Copy constructor called" << std::endl;
 	*this = rhs;
 }
 
 RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &rhs)
 {
-	if (this != &rhs)
-	{
-		this->setSigned(rhs.getSigned());
-		this->setFormTarget(rhs.getFormTarget());
-	}
-	return *this;
+	std::cout << "RobotomyRequestForm: assignation operator is called" << std::endl;
+	this->setSigned(rhs.getSigned());
+	this->setFormTarget(rhs.getFormTarget());
+	return (*this);
 }
 
 void RobotomyRequestForm::executeForm() const
 {
 
-	std::cout << BLUE << "Drilling noises..." << RESET << std::endl;
+	std::cout << CYAN;
+	std::cout << "Some drilling noises..." << std::endl;
+	std::cout << RESET;
+
 	srand(time(NULL));
-	int ret = rand() % 2;
-	if (ret)
-		std::cout << BLUE << "<" << this->getFormTarget() << "> has been robotomized successfully." << RESET << std::endl;
+	int randomnum = rand() % 2;
+	if (randomnum)
+	{
+		std::cout << GREEN;
+		std::cout << this->getFormTarget() << " has been robotomized successfully" << std::endl;
+		std::cout << RESET;
+	}
 	else
-		std::cout << BLUE << "The executor failed to robotomize <" << this->getFormTarget() << ">." << RESET << std::endl;
+	{
+		std::cout << RED;
+		std::cout << this->getFormTarget() << " has been failed to robotomized" << std::endl;
+		std::cout << RESET;
+	}
 }

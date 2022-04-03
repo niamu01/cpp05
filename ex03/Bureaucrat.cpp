@@ -1,58 +1,75 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/03 19:07:21 by yeju              #+#    #+#             */
+/*   Updated: 2022/04/03 22:09:18 by yeju             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdexcept>
-#include <iostream>
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
 
-Bureaucrat::Bureaucrat() : _name("null"), _grade(0)
+Bureaucrat::Bureaucrat() : _name(""), _grade(150)
 {
-	return;
+	std::cout << "Bureaucrat: Default constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
+	std::cout << "Bureaucrat: Constructor called" << std::endl;
 	try
 	{
 		if (grade < 1)
-			throw GradeTooHighException();
+			throw Bureaucrat::GradeTooHighException();
 		else if (grade > 150)
-			throw GradeTooLowException();
+			throw Bureaucrat::GradeTooLowException();
 	}
-	catch (const GradeTooLowException &e)
+	catch (const Bureaucrat::GradeTooLowException &_throw)
 	{
-		std::cout << RED << e.what() << RESET << std::endl;
+		std::cout << YELLOW;
+		std::cout << _throw.what() << std::endl;
+		std::cout << RESET;
+		return ;
 	}
-	catch (const GradeTooHighException &e)
+	catch (const Bureaucrat::GradeTooHighException &_throw)
 	{
-		std::cout << RED << e.what() << RESET << std::endl;
+		std::cout << YELLOW;
+		std::cout << _throw.what() << std::endl;
+		std::cout << RESET;
+		return ;
 	}
-	std::cout << GREEN << "* Bureaucrat <" << this->getName() << "> is born. *" << RESET << std::endl;
+	std::cout << CYAN;
+	std::cout << "Bureaucrat: " << this->getName() << " is created by Constructor" << std::endl;
+	std::cout << RESET;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << MAGENTA << "* Bureaucrat <" << this->getName() << "> is destroyed. *" << RESET << std::endl;
+	std::cout << "Bureaucrat: Destructor called" << std::endl;
+	std::cout << CYAN;
+	std::cout << "Bureaucrat: " << this->getName() << " is destroyed by Destructor" << std::endl;
+	std::cout << RESET;
 }
 
-Bureaucrat::Bureaucrat(const Bureaucrat &rhs) : _name(rhs.getName()), _grade(rhs.getGrade())
+Bureaucrat::Bureaucrat(Bureaucrat const &rhs) : _name(rhs.getName()), _grade(rhs.getGrade())
 {
-	std::cout << YELLOW << "Bureaucrat copy constructor called." << RESET << std::endl;
+	std::cout << "Bureaucrat: Copy constructor called" << std::endl;
 	*this = rhs;
 }
 
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs)
+Bureaucrat &Bureaucrat::operator=(Bureaucrat const &rhs)
 {
-	std::cout << YELLOW << "Bureaucrat assignation constructor called." << RESET << std::endl;
-	if (this != &rhs)
-	{
-		this->_grade = rhs.getGrade();
-	}
-	return *this;
+	std::cout << "Bureaucrat: Assignation operator called" << std::endl;
+	this->_grade = rhs.getGrade();
+	return (*this);
 }
 
 std::string Bureaucrat::getName() const
 {
-	return this->_name;
+	return (this->_name);
 }
 
 void Bureaucrat::setGrade(int grade)
@@ -62,7 +79,7 @@ void Bureaucrat::setGrade(int grade)
 
 int Bureaucrat::getGrade() const
 {
-	return this->_grade;
+	return (this->_grade);
 }
 
 void Bureaucrat::incrementGrade(int amount)
@@ -70,15 +87,23 @@ void Bureaucrat::incrementGrade(int amount)
 	try
 	{
 		if (this->getGrade() - amount < 0)
-		{
 			throw Bureaucrat::GradeTooHighException();
-		}
+		else if (this->getGrade() - amount > 150)
+			throw Bureaucrat::GradeTooLowException();
 	}
-	catch (Bureaucrat::GradeTooHighException &e)
+	catch (const Bureaucrat::GradeTooHighException &_throw)
 	{
-		std::cout << RED << e.what() << std::endl
-				  << RESET;
-		return;
+		std::cout << YELLOW;
+		std::cout << _throw.what() << std::endl;
+		std::cout << RESET;
+		return ;
+	}
+	catch (const Bureaucrat::GradeTooLowException &_throw)
+	{
+		std::cout << YELLOW;
+		std::cout << _throw.what() << std::endl;
+		std::cout << RESET;
+		return ;
 	}
 	this->setGrade(this->getGrade() - amount);
 }
@@ -89,20 +114,32 @@ void Bureaucrat::decrementGrade(int amount)
 	{
 		if (this->getGrade() + amount > 150)
 			throw Bureaucrat::GradeTooLowException();
+		else if (this->getGrade() + amount < 0)
+			throw Bureaucrat::GradeTooHighException();
 	}
-	catch (Bureaucrat::GradeTooLowException &e)
+	catch (const Bureaucrat::GradeTooLowException &_throw)
 	{
-		std::cout << RED << e.what() << std::endl
-				  << RESET;
-		return;
+		std::cout << YELLOW;
+		std::cout << _throw.what() << std::endl;
+		std::cout << RESET;
+		return ;
+	}
+	catch (const Bureaucrat::GradeTooHighException &_throw)
+	{
+		std::cout << YELLOW;
+		std::cout << _throw.what() << std::endl;
+		std::cout << RESET;
+		return ;
 	}
 	this->setGrade(this->getGrade() + amount);
 }
 
-std::ostream &operator<<(std::ostream &o, const Bureaucrat &i)
+std::ostream &operator<<(std::ostream &out, Bureaucrat const &bureaucrat)
 {
-	o << BLUE << i.getName() << ", bureaucrat grade <" << i.getGrade() << ">." << RESET;
-	return o;
+	out << RED;
+	out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
+	out << RESET;
+	return (out);
 }
 
 void Bureaucrat::signForm(Form &form)
@@ -110,24 +147,37 @@ void Bureaucrat::signForm(Form &form)
 	if (form.getGradeToSign() >= this->getGrade())
 	{
 		form.setSigned(true);
-		std::cout << CYAN << "<" << this->getName() << "> signs <" << form.getName() << ">" << RESET << std::endl;
+		std::cout << GREEN;
+		std::cout << this->getName() << " signed " << form.getName() << std::endl;
+		std::cout << RESET;
 	}
 	else
-		std::cout << YELLOW << "<" << this->getName() << "> cannot sign <" << form.getName() << "> because the bureaucrat's grade is lower than the form's grade to sign>" << RESET << std::endl;
+	{
+		std::cout << RED;
+		std::cout << this->getName() << " couldn’t sign " << form.getName() << " because the bureaucrat's grade is lower than the form's grade to sign" << std::endl;
+		std::cout << RESET;
+	}
 }
 
-void Bureaucrat::executeForm(const Form &form)
+void Bureaucrat::executeForm(Form const &form)
 {
-
 	if (!form.checkFormSignedStatus())
-		std::cout << MAGENTA << "<" << form.getName() << "> cannot be executed by <" << this->getName() << "> because the form is not signed." << RESET << std::endl;
-
+	{
+		std::cout << RED;
+		std::cout << this->getName() << " can't executed " << form.getName() << ", because the form is not signed" << std::endl;
+		std::cout << RESET;
+	}
 	else if (!form.checkFormExecuteGrade(*this))
-		std::cout << MAGENTA << "<" << form.getName() << "> cannot be executed by <" << this->getName() << "> because the executor does not have a high enough score." << RESET << std::endl;
-
+	{
+		std::cout << RED;
+		std::cout << this->getName() << " can't executed " << form.getName() << ", because the executor does not have a high score" << std::endl;
+		std::cout << RESET;
+	}
 	else
 	{
-		std::cout << CYAN << "<" << this->getName() << "> executes <" << form.getName() << ">." << RESET << std::endl;
+		std::cout << GREEN;
+		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+		std::cout << RESET;
 		form.executeForm();
 	}
 }
