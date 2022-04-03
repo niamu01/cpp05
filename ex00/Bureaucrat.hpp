@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 12:05:59 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 13:09:35 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/03 16:53:30 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,17 @@
 
 # define RESET "\e[0m"
 # define RED "\e[31m"
-# define GREEN "\e[32m"
+// # define GREEN "\e[32m"
 # define YELLOW "\e[33m"
 # define BLUE "\e[34m"
-# define PURPLE "\e[35m" //MAGENTA
-# define CYAN "\e[36m"
+// # define PURPLE "\e[35m"
+// # define CYAN "\e[36m"
 
 class Bureaucrat
 {
 private:
 	const std::string _name;
-	int _grade; // 1 <= _grade <= 150
-
-	static const int	highestGrade = 1;
-	static const int	lowestGrade = 150;
-	void	checkGrade() const ;
+	int _grade; //1 <= _grade <= 150
 
 public:
 	Bureaucrat();
@@ -46,8 +42,8 @@ public:
 	
 	void setGrade(int grade);
 	
-	void incrementGrade(int grade);
-	void decrementGrade(int grade);
+	void incrementGrade(int amount);
+	void decrementGrade(int amount);
 
 	class GradeTooHighException : public std::exception
 	{

@@ -2,32 +2,39 @@
 
 int main(void)
 {
-	Bureaucrat tooHigh("tooHigh", 0);
-	Bureaucrat tooLow("tooLow", 160);
+	Bureaucrat High("High", 0);
+	Bureaucrat Low("Low", 151);
+	std::cout << std::endl;
 
-	// test grade change (within range)
-	std::cout << "----" << std::endl;
-	Bureaucrat name("name", 100);
-	std::cout << name << std::endl;
-	name.incrementGrade(90);
-	std::cout << name << std::endl;
-	name.decrementGrade(90);
-	std::cout << name << std::endl;
+	Bureaucrat a("nameA", 100);
+	std::cout << std::endl;
 
-	// test grade change (out of range)
-	std::cout << "----" << std::endl;
-	name.incrementGrade(150);
-	std::cout << name << std::endl;
-	name.decrementGrade(150);
-	std::cout << name << std::endl;
+	Bureaucrat b (a);
+	std::cout << std::endl;
 
-	// test copy & assignation operator
-	std::cout << "----" << std::endl;
-	Bureaucrat copy = Bureaucrat(tooHigh);
-	std::cout << copy << std::endl;
+	std::cout << a << std::endl;
+	std::cout << b << std::endl;
+	std::cout << std::endl;
 
-	// objects are destructed automatically
-	std::cout << "----" << std::endl;
+	a.incrementGrade(50);
+	std::cout << a << std::endl;
+	std::cout << std::endl;
+
+	a.decrementGrade(100);
+	std::cout << a << std::endl;
+	std::cout << std::endl;
+
+	a.incrementGrade(150);
+	std::cout << a << std::endl;
+	std::cout << std::endl;
+
+	a.decrementGrade(150);
+	std::cout << a << std::endl;
+	std::cout << std::endl;
+	
+	a.incrementGrade(50);
+	std::cout << a << std::endl;
+	std::cout << std::endl;
 
 	return 0;
 }
