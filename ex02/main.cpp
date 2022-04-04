@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 21:20:03 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 21:57:03 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/04 19:36:13 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int main(void)
 	std::cout << "--make ShrubberyCreationForm--" << std::endl;
 	std::cout << RESET;
 	
-		ShrubberyCreationForm shrubbery("shrubbery");
+		ShrubberyCreationForm shrubbery("home");
 		std::cout << std::endl;
 
 		std::cout << "--check ShrubberyCreation signed--" << std::endl;
