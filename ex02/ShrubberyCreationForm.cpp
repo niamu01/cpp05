@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 19:33:56 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 21:27:32 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/04 18:24:09 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,32 +44,28 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void ShrubberyCreationForm::executeForm() const
 {
-	std::ifstream fin;
 	std::string fileName = this->getFormTarget() + "_shrubbery";
-	std::ofstream fout(fileName.c_str());
+	std::ofstream fout(fileName);
 
-	fin.open("ascii.txt");
-
-	if (fin.fail())
-	{
-		std::cout << RED;
-		std::cout << "FILE OPEN ERROR" << std::endl;
-		std::cout << RESET;
-		return ;
-	}
+ 	std::string shrubbery =	"               ,@@@@@@@,\n"
+                          	"       ,,,.   ,@@@@@@/@@,  .oo8888o.\n"
+                         	"    ,&%%&%&&%,@@@@@/@@@@@@,8888\\88/8o\n"
+                          	"   ,%&\\%&&%&&%,@@@\\@@@/@@@88\\88888/88'\n"
+                         	"   %&&%&%&/%&&%@@\\@@/ /@@@88888\\88888'\n"
+                        	"   %&&%/ %&%%&&@@\\ V /@@' `88\\8 `/88'\n"
+                      	    "   `&%\\ ` /%&'    |.|        \\ '|8'\n"
+                      	    "       |o|        | |         | |\n"
+                      	    "       |.|        | |         | |\n"
+                     	    "    \\\\/ ._\\//_/__/  ,\\_//__\\\\/.  \\_//__/_";
 	if (fout.fail())
 	{
 		std::cout << RED;
-		std::cout << "Create file error." << std::endl;
+		std::cout << "FILE CREATE ERROR" << std::endl;
 		std::cout << RESET;
 		return ;
 	}
 
-	std::string word;
-	while (std::getline(fin, word))
-		fout << word << std::endl;
-	fout << std::endl;
+	fout << shrubbery << std::endl;
 
 	fout.close();
-	fin.close();
 }
