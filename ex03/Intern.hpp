@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 17:49:32 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/06 19:41:45 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 19:45:41 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
-#include "Form.hpp"
 
 class Intern
 {
@@ -43,7 +42,5 @@ private:
 	Form *createRobotomyRequest(std::string formTarget);
 	Form *createPresidentialPardon(std::string formTarget);
 };
-
-// typedef Form *(Intern::*createFormFunction)(std::string formTarget);
 
 #endif

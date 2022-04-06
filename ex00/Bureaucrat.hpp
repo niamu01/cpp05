@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 12:05:59 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/06 18:33:36 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 19:45:25 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Bureaucrat
 {
 private:
 	const std::string _name;
-	int _grade; //1 <= _grade <= 150
+	int _grade;
 
 public:
 	Bureaucrat();

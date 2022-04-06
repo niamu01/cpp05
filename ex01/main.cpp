@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 16:59:38 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 18:50:36 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 19:45:31 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int main(void)
 	Bureaucrat c("c", 100);
 	std::cout << std::endl;
 
-	Form oneForm("one", 150, 150); //name, tosign, toexecute
+	Form oneForm("one", 150, 150);
 	Form twoForm("two", 150, 90);
 	Form threeForm("three", 90, 40);
 	Form fourForm("four", 40, 5);
