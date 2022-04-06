@@ -6,13 +6,13 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 21:07:48 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 22:09:26 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 19:23:04 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form() : _name("name"), _signed(false), _gradeToSign(0), _gradeToExecute(0)
+Form::Form() : _name("name"), _signed(false), _gradeToSign(1), _gradeToExecute(1)
 {
 	std::cout << "Form: Default constructor called" << std::endl;
 }
@@ -129,24 +129,6 @@ std::ostream &operator<<(std::ostream &out, Form const &form)
 		out << RESET;
 	}
 	return (out);
-}
-
-void Form::execute(const Bureaucrat &executor) const
-{
-	if (!this->checkFormSignedStatus())
-	{
-		std::cout << RED;
-		std::cout << this->getName() << " can't executed "<< executor.getName() << ", because the form is not signed." << std::endl;
-		std::cout << RESET;
-	}
-	else if (!this->checkFormExecuteGrade(executor))
-	{
-		std::cout << RED;
-		std::cout << this->getName() << " can't executed "<< executor.getName() << ", because the form does not have a high score." << std::endl;
-		std::cout << RESET;
-	}
-	else
-		executeForm();
 }
 
 bool Form::checkFormSignedStatus(void) const

@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 21:20:03 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/04 19:36:13 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 19:02:20 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 int main(void)
 {
 	std::cout << YELLOW;
-	std::cout << "--make executor--" << std::endl;
+	std::cout << "--make two Bureaucrat--" << std::endl;
 	std::cout << RESET;
 
 		Bureaucrat highGrade("highGrade", 1);

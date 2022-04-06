@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 19:07:21 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 22:09:18 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 19:29:19 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ void Bureaucrat::signForm(Form &form)
 	}
 }
 
-void Bureaucrat::executeForm(Form const &form)
+void Bureaucrat::execute(Form const &form)
 {
 	if (!form.checkFormSignedStatus())
 	{
@@ -178,6 +178,6 @@ void Bureaucrat::executeForm(Form const &form)
 		std::cout << GREEN;
 		std::cout << this->getName() << " executed " << form.getName() << std::endl;
 		std::cout << RESET;
-		form.executeForm();
+		form.execute(*this);
 	}
 }

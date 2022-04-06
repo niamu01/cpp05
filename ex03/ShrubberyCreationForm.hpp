@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 19:33:27 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 20:54:40 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 19:25:55 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	virtual ~ShrubberyCreationForm();
 	ShrubberyCreationForm &operator=(ShrubberyCreationForm const &rhs);
 
-	virtual void executeForm() const;
+	virtual void execute(Bureaucrat const &executor) const;
 };
 
 #endif

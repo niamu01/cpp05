@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 19:21:46 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 20:54:40 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 19:22:32 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,7 @@ public:
 		}
 	};
 
-	virtual void executeForm() const = 0;
-
-	void execute(Bureaucrat const &executor) const;
+	virtual void execute(Bureaucrat const &executor) const = 0;
 	
 	bool checkFormSignedStatus() const;
 	bool checkFormExecuteGrade(Bureaucrat const &executor) const;

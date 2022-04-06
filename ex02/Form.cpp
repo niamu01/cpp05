@@ -6,13 +6,13 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 21:07:48 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 22:09:26 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 18:52:39 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form() : _name("name"), _signed(false), _gradeToSign(0), _gradeToExecute(0)
+Form::Form() : _name("name"), _signed(false), _gradeToSign(1), _gradeToExecute(1)
 {
 	std::cout << "Form: Default constructor called" << std::endl;
 }

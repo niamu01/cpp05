@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:11:05 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 20:54:40 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 19:25:47 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ public:
 	RobotomyRequestForm(RobotomyRequestForm const &rhs);
 	virtual ~RobotomyRequestForm();
 	RobotomyRequestForm &operator=(RobotomyRequestForm const &rhs);
-
-	virtual void executeForm() const;
+	
+	virtual void execute(Bureaucrat const &executor) const;
 };
 
 #endif

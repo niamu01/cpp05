@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 20:54:44 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/04 21:13:25 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 19:43:36 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,6 @@ Intern &Intern::operator=(const Intern &rhs)
 	return (*this);
 }
 
-void noMaching()
-{
-	std::cout << RED;
-	std::cout << "Intern cannot creates " << formTarget << formName << std::endl;
-	std::cout << RESET;
-}
-
 Form *Intern::makeForm(std::string formName, std::string formTarget)
 {
 	std::string input[3] = {
@@ -62,23 +55,24 @@ Form *Intern::makeForm(std::string formName, std::string formTarget)
 				switch (i)
 				{
 					case 0:
-						return new ShrubberyCreationForm(formName);
+						return new ShrubberyCreationForm(formTarget);
 						break;
 					case 1:
-						return new RobotomyRequestForm(formName);
+						return new RobotomyRequestForm(formTarget);
 						break;
 					case 2:
-						return new PresidentialPardonForm(formName);
+						return new PresidentialPardonForm(formTarget);
 						break;
 				}
 			}
 		}
-		throw noMaching();
+		throw Intern::noMaching();
 	}
-	catch (std::exception *_throw)
+	catch (const Intern::noMaching &_throw)
 	{
 		std::cout << RED;
-		std::cout << "Intern cannot creates " << formName << formTarget << std::endl;
+		std::cout << _throw.what() << std::endl;
 		std::cout << RESET;
+		return (NULL);
 	}
 }

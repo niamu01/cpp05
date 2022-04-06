@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 19:34:22 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 21:57:54 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 18:33:22 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ public:
 	class GradeTooHighException : public std::exception
 	{
 	public:
-		const char *what() const throw()
+		virtual const char *what() const throw()
 		{
 			return ("Grade is too high");
 		}
@@ -62,7 +62,7 @@ public:
 	class GradeTooLowException : public std::exception
 	{
 	public:
-		const char *what() const throw()
+		virtual const char *what() const throw()
 		{
 			return ("Grade is too low");
 		}

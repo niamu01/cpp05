@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 20:25:42 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 20:54:40 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 19:25:27 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ public:
 	PresidentialPardonForm(PresidentialPardonForm const &rhs);
 	PresidentialPardonForm &operator=(PresidentialPardonForm const &rhs);
 
-	virtual void executeForm() const;
+	virtual void execute(Bureaucrat const &executor) const;
 };
 
 #endif

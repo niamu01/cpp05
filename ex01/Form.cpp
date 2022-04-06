@@ -6,13 +6,13 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 16:59:34 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 22:06:55 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 18:55:26 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
-Form::Form() : _name("name"), _signed(false), _gradeToSign(0), _gradeToExecute(0)
+Form::Form() : _name("name"), _signed(false), _gradeToSign(1), _gradeToExecute(1)
 {
 	std::cout << "Form: Default constructor called" << std::endl;
 }
@@ -107,7 +107,7 @@ void Form::beSigned(Bureaucrat &bureaucrat)
 	}
 	if (this->getGradeToSign() >= bureaucrat.getGrade())
 	{
-		std::cout << CYAN;
+		std::cout << GREEN;
 		std::cout << bureaucrat.getName() << " signed " << this->getName() << std::endl;
 		std::cout << RESET;
 		this->_signed = true;

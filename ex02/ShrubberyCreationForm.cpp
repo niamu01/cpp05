@@ -6,18 +6,18 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 19:33:56 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/04 18:24:09 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 19:02:52 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : Form("name_shrubbery", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm() : Form("Form_shrubbery", 145, 137)
 {
 	std::cout << "ShrubberyCreationForm: Default constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form("name_shrubbery", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form(target, 145, 137)
 {
 	std::cout << "ShrubberyCreationForm: Constructor called" << std::endl;
 	this->setFormTarget(target);

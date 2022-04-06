@@ -6,18 +6,18 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 19:33:56 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 21:27:32 by yeju             ###   ########.fr       */
+/*   Updated: 2022/04/06 19:27:14 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() : Form("name_shrubbery", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm() : Form("Form_shrubbery", 145, 137)
 {
 	std::cout << "ShrubberyCreationForm: Default constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form("name_shrubbery", 145, 137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form(target, 145, 137)
 {
 	std::cout << "ShrubberyCreationForm: Constructor called" << std::endl;
 	this->setFormTarget(target);
@@ -42,34 +42,49 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	return (*this);
 }
 
-void ShrubberyCreationForm::executeForm() const
+void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 {
-	std::ifstream fin;
-	std::string fileName = this->getFormTarget() + "_shrubbery";
-	std::ofstream fout(fileName.c_str());
-
-	fin.open("ascii.txt");
-
-	if (fin.fail())
+	if (!this->checkFormSignedStatus())
 	{
 		std::cout << RED;
-		std::cout << "FILE OPEN ERROR" << std::endl;
+		std::cout << this->getName() << " can't executed "<< executor.getName() << ", because the form is not signed." << std::endl;
 		std::cout << RESET;
-		return ;
 	}
-	if (fout.fail())
+	else if (!this->checkFormExecuteGrade(executor))
 	{
 		std::cout << RED;
-		std::cout << "Create file error." << std::endl;
+		std::cout << this->getName() << " can't executed "<< executor.getName() << ", because the form does not have a high score." << std::endl;
 		std::cout << RESET;
-		return ;
 	}
+	else
+	{
+		std::ifstream fin;
+		std::string fileName = this->getFormTarget() + "_shrubbery";
+		std::ofstream fout(fileName.c_str());
 
-	std::string word;
-	while (std::getline(fin, word))
-		fout << word << std::endl;
-	fout << std::endl;
+		fin.open("ascii.txt");
 
-	fout.close();
-	fin.close();
+		if (fin.fail())
+		{
+			std::cout << RED;
+			std::cout << "FILE OPEN ERROR" << std::endl;
+			std::cout << RESET;
+			return ;
+		}
+		if (fout.fail())
+		{
+			std::cout << RED;
+			std::cout << "Create file error." << std::endl;
+			std::cout << RESET;
+			return ;
+		}
+
+		std::string word;
+		while (std::getline(fin, word))
+			fout << word << std::endl;
+		fout << std::endl;
+
+		fout.close();
+		fin.close();
+	}
 }
