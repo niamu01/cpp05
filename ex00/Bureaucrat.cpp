@@ -6,7 +6,7 @@
 /*   By: yeju <yeju@student.42seoul.kr>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/03 12:05:59 by yeju              #+#    #+#             */
-/*   Updated: 2022/04/03 20:59:00 by yeju             ###   ########.fr       */
+/*   Updated: 2022/06/01 16:59:09 by yeju             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void Bureaucrat::incrementGrade(int amount)
 {
 	try
 	{
-		if (this->getGrade() - amount < 0)
+		if (this->getGrade() - amount < 1)
 			throw Bureaucrat::GradeTooHighException();
 		else if (this->getGrade() - amount > 150)
 			throw Bureaucrat::GradeTooLowException();
@@ -114,7 +114,7 @@ void Bureaucrat::decrementGrade(int amount)
 	{
 		if (this->getGrade() + amount > 150)
 			throw Bureaucrat::GradeTooLowException();
-		else if (this->getGrade() + amount < 0)
+		else if (this->getGrade() + amount < 1)
 			throw Bureaucrat::GradeTooHighException();
 	}
 	catch (const Bureaucrat::GradeTooLowException &_throw)
